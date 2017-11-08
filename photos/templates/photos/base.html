@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+
+<div class="container">
+ <style type="text/css">
+        body { 
+         background: url('{{STATIC_URL}}/media/DSC00365.JPG') no-repeat center center fixed; 
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+         -o-background-size: cover;
+         background-size: cover;
+        }
+</style>
+  
+<head>
+	<title>MyPhotoGallery</title>
+
+	{% include 'photos/css.html' %}
+	<h1> MyPhotoGallery </h1>
+    <nav class="navbar navbar-default navbar-static-top  ">
+        <a class="navbar-brand navbar-left" href="/photos/home/">Home</a>
+        <a class="navbar-brand navbar-left" href="#">Blogs</a>
+        <a class="navbar-brand navbar-left" href="/photos/contact/">Contact</a>
+        {% if user.is_authenticated %}
+			<a class="navbar-brand navbar-right" href="/photos/logout/">Logout</a>
+        {% else %}
+        	<a class="navbar-brand navbar-right" href="/photos/login/">Login</a>
+        {%endif%}
+</nav>
+</head>
+</div>
+
+<body>
+<div class='container'>
+{% block content2 %}
+
+{% if user.is_authenticated %}
+	<p> Welcome {{ user.username }} </p>
+{% endif %}
+
+<h3>This is my personal website to display photos.</h3>
+
+{% endblock content2 %}
+
+{% block content %} {% endblock content %}
+
+{% include 'photos/js.html' %}
+</div>
+
+</body>
+
+</html>
