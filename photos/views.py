@@ -32,7 +32,6 @@ def contact(request, about):
     context = {"html_var" : "Django"}
     return render(request, 'photos/contact.html', context)
 
-  
 
 ''''
 class RandomView(TemplateView):
@@ -43,29 +42,18 @@ class RandomView(TemplateView):
         comments = Comments.objects.all()
     
         context = {'album_name':album_name, 'images' : images, 'comments' :comments}
-        return render(request, 'photos/random.html', context)
-          
+        return render(request, 'photos/random.html', context)         
      
     def post(self, request, album_name):
         form = CommentsForm(request.POST)
         if form.is_valid():
-            
-            add = form.save(commit=False)
-            add.comment = form.cleaned_data['comment']
-            add.image_name = Images.objects.filter(image_name_icontains = form.cleaned_data['image_name'])
-            print(form.errors)
-#            image = Images.objects.filter(image_name=image_name)
-#            add.image_name = Images.objects.filter(image_name=image_name)
- #          CommentsForm.comment = comment
-#            CommentsForm.comment_dt = timezone.now()
-#            CommentsForm.image_name = image_name
-#            CommentsForm.comment = text
-#            a = Comments(image_name = Images.objects.filter(image_name=image_name), comment = comment )
-            Comments.save(add)
-            
-            
+            form.save(commit=False)
+            comment = form.cleaned_data['comment']
+            image_name = Images.objects.filter(image_name = form.cleaned_data['image_name'])
+            form.comment = comment
+            form.image_name = image_name
+            form.save()
         else:
-#            form = ImagesForm() 
             print(form.errors)
             return render(request, 'photos/random.html', {'form': form} )
         
@@ -76,10 +64,9 @@ class RandomView(TemplateView):
 #           return render(request, self.template_name, context)
 
          
-'''      
-    
+'''        
 
-   
+
 def random(request, album_name):
         
     images = Images.objects.filter(album_name=album_name)
