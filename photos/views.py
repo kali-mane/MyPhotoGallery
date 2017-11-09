@@ -47,12 +47,9 @@ class RandomView(TemplateView):
     def post(self, request, album_name):
         form = CommentsForm(request.POST)
         if form.is_valid():
-            form.save(commit=False)
-            comment = form.cleaned_data['comment']
-            image_name = Images.objects.filter(image_name = form.cleaned_data['image_name'])
-            form.comment = comment
-            form.image_name = image_name
-            form.save()
+            comment = form.save(commit=False)
+            comment.image_name = Images.objects.filter(image_name = form.cleaned_data['image_name'])
+            comment.save()
         else:
             print(form.errors)
             return render(request, 'photos/random.html', {'form': form} )
