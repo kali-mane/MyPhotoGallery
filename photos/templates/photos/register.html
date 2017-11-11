@@ -1,0 +1,44 @@
+{% extends "photos/base.html" %}
+
+{% block content %}
+
+<body>
+<div class="container">
+	 <div class="col-lg-4"></div>
+	 <div class="col-lg-4 text-center">
+	 <div class="jumbotron" style=" background:white">
+	      <h3>Registration Form</h3>
+     <form method="POST" action=""> {% csrf_token %}
+		  {{form.username.label_tag }}
+		  {{form.username}}
+
+		  {{form.email.label_tag }}
+		  {{form.email}}
+		  
+		  {{form.password1.label_tag}} 
+		  {{form.password1}} 
+		  
+		  {{form.password2.label_tag}} 
+		  {{form.password2}} 
+	      <br> </br>
+		  <button type="submit" class="btn btn-primary form-control">Register</button>
+	      <input type="hidden" name="next" value="{{ next }}" />
+		  <br> </br>
+	      {% if form.errors %}
+		    {% for field in form %}
+		      {% for error in field.errors %}
+	 	  	  <div class="alert alert-warning fade in" >
+			     <strong>Warning! {{ error  }} </strong> 
+			   </div>
+			  {% endfor %}
+			{% endfor %}
+		  {% endif %}		
+     </form>
+     </div>
+     </div>
+</div>
+</body>
+
+{% endblock %}
+	
+ 

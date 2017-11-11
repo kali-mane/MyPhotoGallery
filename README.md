@@ -1,6 +1,12 @@
-# MyPhotoGallery
-MyPhotoGallery is a small personal website created using Django to display my photo albums.
+Project : "MyPhotoGallery"
+Technology used : Python, Django, Bootstrap
 
-![Screenshot](https://user-images.githubusercontent.com/32324416/32538021-96cc4128-c48a-11e7-8fcb-2ce4e85bdd22.png)
+Description : MyPhotoGallery is a small website created using Django to display my photo albums and blogs.
+It allows user to register, login and views photo albums and likes the images.
+
+Under development : to allow users to comment on the images.
+
+
+
 
 

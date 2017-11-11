@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 
 class Album(models.Model):
     album_name = models.CharField(max_length=50, primary_key=True)
@@ -8,6 +7,7 @@ class Album(models.Model):
 
     def __str__(self):
         return self.album_name
+
 
 class Images(models.Model):
     album_name = models.ForeignKey(Album, db_column='album_name')
@@ -28,10 +28,4 @@ class Comments(models.Model):
  
     def __str__(self):
         return self.comment
-
-
     
-
-    
-
-        

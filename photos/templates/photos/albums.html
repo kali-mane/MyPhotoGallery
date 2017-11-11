@@ -1,0 +1,17 @@
+{% extends "photos/base.html" %}
+
+{% block content %}
+
+<body>
+<div class="container center">
+<br> </br>
+<h4 class="text-center">There are three albums present on this site. Click on the individual albums.</h4>
+
+  {% for album in albums %}
+	 <a style="color:black"; align="Center"; href="/photos/{{album.album_name}}/"><h4>{{album.album_name }}</h4></a>
+  {%endfor %}
+</body>
+
+</div>
+
+{% endblock content %}

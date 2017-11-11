@@ -1,61 +1,63 @@
-<div class='container'>
+
 {% extends "photos/base.html" %}
 
 {% block content %} 
 
-  
-   
-<h4>The Album includes some random pics clicked over a period of time.</h4>
-<br> </br>
+<div class="container center">
+<div class="text-center">
 
+<body> 
+ {% if user.is_authenticated %}
+ <br> </br> 
+ <h4>The Album includes some random pics clicked over a period of time.</h4>
 
-<h3>Album : {{album_name }}</h3>
-<br> </br>
+ <h3><Strong>{{ album_name }}</Strong></h3>
+ <br> </br>
 
-{% for image in images %}
-<img src="{{image.image.url}}" height="400" width="500">
-<h4> {{image.image_name }}</h4> 
-
-
-  
-<form method="POST" action=""> {% csrf_token %}
-	{{ form }}
-    {% if form.errors %}
+ {% for image in images %}
+	<img src="{{image.image.url}}" height="500" width="700">
+	<h4> {{image.image_name }}</h4> 
+ 
+ <form method="POST" action=""> {% csrf_token %}
+   {% if form.errors %}
      {% for field in form %}
        <div class="alert alert-warning fade in">
 	      <a href="#" class="close" data-dismiss="alert">&times;</a>
-	      <strong>Warinng!</strong>{{field.errors}} {{field.label_tag }}  {{field }} 
+	      <strong>Warning!</strong>{{field.errors}} {{field.label_tag }}  {{field }} 
 	   </div>
      {%endfor %}
-    {%endif %}
+   {%endif %}
  
-  <span class = "badge">{{image.like_cntr}}</span>  
-  <input type="hidden" name="like_cntr" id="like_cntr" value="{{image.like_cntr}}" /> 
-  <input type="hidden" name="image_name" id="image_name" value="{{image.image_name}}" /> 
-  <input type="Submit" name="Likes" value="Likes" id="likes"/>
+   <span class = "badge">{{image.like_cntr}}</span>  
+   	 <input type="hidden" name="like_cntr" id="like_cntr" value="{{image.like_cntr}}" /> 
+     <input type="hidden" name="image_name" id="image_name" value="{{image.image_name}}" /> 
+     <input type="Submit" name="Likes" value="Likes" id="likes"/>
   
-     
-  <span class = "badge">Comments</span>
-    {% for comment_var in comments %}
+   <span class = "badge">Comments</span>
+     {% for comment_var in comments %}
        {% if comment_var.image_name == image.image_name  %}
-          <h5> {{ comment_var.comment }} </h5>
+          <h5> {{ comment_var.comments }} </h5>
        {% endif %}
-    {% empty %}
-       <input type="text" name="comment" id="comment" value=" " />
+     {% empty %}
+       <input type="text" name="comment" id="comment" value="This is test" />
    	   <input type="hidden" name="image_name" id="image_name" value="{{image.image_name}}" />
-   	   <input type="Submit" name="Comment" value="Comment" id="Submit">
+       <input type="Submit" name="Comment" value="Comment" id="comment" />
+     {% endfor %}
+     	
+ </form>
 
-        
-    {% endfor %}	
-
-  	
+ <br> </br>
+ <br> </br>
  
-</form>
-
-<br> </br>
-<br> </br>
 {% endfor %}
 
-</div>
-{% endblock content %}
+{% else %}
+  <br>
+  <h4 class="text-center">Please login to continue</h4>
+{% endif %}
 
+</body>
+</div>
+</div>
+
+{% endblock content %}

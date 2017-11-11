@@ -1,9 +1,14 @@
 {% extends "photos/base.html" %}
 
 {% block content %}
-<h3>Please contact me at </h3>
-<p>
-	Email : maneesha.vinayak@gmail.com
-</p>
+
+<div class="Container">
+  <body>
+    <div class="jumbotron">
+	    <h4 class="text-center">Please contact me at</h4>
+	    <p class="text-center"> {{ email }} </p>
+    </div>
+  </body>
+</div>
 
 {% endblock content %}

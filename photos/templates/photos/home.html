@@ -1,20 +1,13 @@
 {% extends "photos/base.html" %}
 
-<div class="container">
 {% block content %}
-
-
-<h3>There are three albums present on this site.</h3>
-
-
-<ul class="nav nav-stacked">
- <div class="col-md-6 cold-md-offset-6">
-  {% for album in albums %}
-	 <li class="list-group-item"><a href="/photos/{{album.album_name }}/"><h4>{{album.album_name }}</h4></a></li>
-  {%endfor %}
- </div>
-</ul>
+   
+   {% if success %}
+   		<h5 class="text-center"> {{ success }}</h4>
+   {% endif %}
+   <div class="jumbotron" style="margin-top:60px">
+	  <h4 class="text-center"><strong>This is my personal website to display contents created by me like albums, stories in the form of blogs.</strong></h4>
+	  <h4 class="text-center"> {{ data }} </h4>
+  </div>
 
 {% endblock content %}
-</div>
-

@@ -1,9 +1,14 @@
-{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
 
-<div class="container">
- <style type="text/css">
+{% include 'photos/css-js.html' %}
+{% load staticfiles %} 
+
+<style type="text/css">
         body { 
          background: url('{{STATIC_URL}}/media/DSC00365.JPG') no-repeat center center fixed; 
          -webkit-background-size: cover;
@@ -12,42 +17,71 @@
          background-size: cover;
         }
 </style>
-  
-<head>
-	<title>MyPhotoGallery</title>
 
-	{% include 'photos/css.html' %}
-	<h1> MyPhotoGallery </h1>
-    <nav class="navbar navbar-default navbar-static-top  ">
+<style>
+	.navbar-default {
+   	  rgba(255,255,255,.5)
+      border-color: EE82EE;
+	}
+	
+	.navbar-default .navbar-brand  {
+ 	   color: Orange;
+ 	}
+	
+	.navbar-inverse .navbar-header .navbar-collapse {
+ 	   color: orange;	   
+	}
+
+ 	.navbar-static-top {
+		min-height: 120px;
+		}
+    @media (min-width: 768px) {
+	.navbar-brand {
+		padding-top: 50px;
+    	padding-bottom: 30px;
+ 		}
+	}
+	
+	.navbar-nav > li > a {
+	    padding-top: 20px;
+   		padding-bottom: 20px;
+    	line-height: 80px;
+	}
+
+	body {
+		font-family: 'Open Sans', Raleway;
+	}
+
+	.jumbotron {
+		background-color:transparent !important; 
+	}
+	
+</style>
+	
+</head>
+
+<body>
+<div class="Container">
+	<title>MyPhotoGallery</title>	
+	<h1 class="text-center"><strong> MyPhotoGallery</strong> </h1>
+	
+    <nav class="navbar navbar-default navbar-static-top container-fluid">
+        <a class="navbar-brand navbar-left"><strong>MyPhotoGallery</strong></a>
         <a class="navbar-brand navbar-left" href="/photos/home/">Home</a>
+        <a class="navbar-brand navbar-left" href="/photos/albums/">Albums</a>
         <a class="navbar-brand navbar-left" href="#">Blogs</a>
         <a class="navbar-brand navbar-left" href="/photos/contact/">Contact</a>
         {% if user.is_authenticated %}
-			<a class="navbar-brand navbar-right" href="/photos/logout/">Logout</a>
+   	        <a class="navbar-brand navbar-right" href="/photos/logout/">Logout</a>
+            <a class="navbar-brand navbar-right" > Welcome {{user.username}}</a>		
         {% else %}
         	<a class="navbar-brand navbar-right" href="/photos/login/">Login</a>
-        {%endif%}
-</nav>
-</head>
-</div>
+        {%endif%}   
+	</nav>
+</div>	
 
-<body>
-<div class='container'>
-{% block content2 %}
-
-{% if user.is_authenticated %}
-	<p> Welcome {{ user.username }} </p>
-{% endif %}
-
-<h3>This is my personal website to display photos.</h3>
-
-{% endblock content2 %}
 
 {% block content %} {% endblock content %}
 
-{% include 'photos/js.html' %}
-</div>
-
 </body>
-
 </html>
