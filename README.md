@@ -7,6 +7,10 @@ It allows user to register, login and views photo albums and likes the images.
 Under development : to allow users to comment on the images.
 
 
+https://github.com/maneeshavinayak/MyPhotoGallery/issues/1
+
+
+
 
 
 
